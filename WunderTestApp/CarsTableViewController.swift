@@ -8,11 +8,11 @@
 
 import Foundation
 import UIKit
-
-class CarsTableViewController: UIViewController {
+import CoreLocation
+class CarsTableViewController: UIViewController, CLLocationManagerDelegate {
     private let cellId = "carCellId"
-    private var cars: [Car] = []
-    
+    var cars: [Car] = []
+    var userLocation:  CLLocation?
     private unowned var carsTableView: UITableView {
         return (view as! CarsView).carsTableView
     }
@@ -23,6 +23,14 @@ class CarsTableViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        let locationManager = CLLocationManager()
+        locationManager.delegate = self
+        
+        userLocation = locationManager.location
+        
+        
+        
         carsTableView.dataSource = self
         carsTableView.delegate = self
         
@@ -42,6 +50,7 @@ class CarsTableViewController: UIViewController {
     }
     
     
+    
 }
 
 
@@ -51,13 +60,13 @@ class CarsTableViewController: UIViewController {
 // MARK: - TableViewController Delegate
 extension CarsTableViewController: UITableViewDelegate {
     
-//    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let nextVC = CurrentHotelController()
-//        nextVC.currentHotel = cars[indexPath.row]
-//        navigationController?.pushViewController(nextVC, animated: true)
-//        tableView.deselectRow(at: indexPath, animated: true)
-//
-//    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let nextVC = CarsMapViewController()
+        nextVC.delegate = self
+        navigationController?.pushViewController(nextVC, animated: true)
+        tableView.deselectRow(at: indexPath, animated: true)
+
+    }
     
 }
 

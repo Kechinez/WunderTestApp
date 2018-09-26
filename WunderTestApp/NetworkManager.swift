@@ -7,12 +7,20 @@
 //
 
 import Foundation
-
+import CoreLocation
+public typealias JSON = [String: Any]
 
 
 public enum APIResult<T> {
     case Success(T)
     case Failure(Error)
+}
+
+extension CLLocationCoordinate2D {
+    func coordinatesToString() -> String {
+        print(String(self.latitude) + "," + String(self.longitude))
+        return String(self.latitude) + "," + String(self.longitude)
+    }
 }
 
 
@@ -25,6 +33,37 @@ class NetworkManager {
     private let session = URLSession(configuration: .default)
     private let urlString = String("https://s3-us-west-2.amazonaws.com/wunderbucket/locations.json")
     
+    
+    func getRouteRequest(with startCoordinate: CLLocationCoordinate2D, and finishCoordinate: CLLocationCoordinate2D, completionHandler: @escaping (APIResult<Route>) -> ()) {
+        
+        let session = URLSession.shared
+        let startStringCoordinate = startCoordinate.coordinatesToString()//self.coordinatesToString(with: startCoordinate)
+        let finishStringCoordinate = finishCoordinate.coordinatesToString()//self.coordinatesToString(with: finishCoordinate)
+        let stringURL = "https://maps.googleapis.com/maps/api/directions/json?origin=\(startStringCoordinate)&destination=\(finishStringCoordinate)&mode=driving&language=en&key=AIzaSyAmV1T_J6_noWuMYBJukYv3-eDBvhr3zmY"
+        let url = URL(string: stringURL)!
+        let request = URLRequest(url: url)
+        //let request = GoogleAPIRequests.DirectionAPI(sourceCoordinate: startStringCoordinate, destCoordinate: finishStringCoordinate).request
+        
+        session.dataTask(with: request) { (data, response, error) in
+            
+            if let error = error {
+                DispatchQueue.main.async {
+                    completionHandler(.Failure(error))
+                }
+                return
+            }
+            do {
+                let json = try JSONSerialization.jsonObject(with: data!, options: .allowFragments) as! JSON
+                guard let routeInfo = Route(data: json)  else { return }
+                DispatchQueue.main.async {
+                    completionHandler(.Success(routeInfo))
+                }
+            } catch {
+                print("can't convert to JSON object!")
+            }
+        }.resume()
+        
+    }
     
     
     

@@ -9,14 +9,14 @@
 import UIKit
 import GoogleMaps
 
+let apiKey = "AIzaSyBUeAcQSqm-8G6vUuIsRnKS6KMfnHhSy0A"
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
     var window: UIWindow?
 
-//AIzaSyBUeAcQSqm-8G6vUuIsRnKS6KMfnHhSy0A
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
-        GMSServices.provideAPIKey("AIzaSyBUeAcQSqm-8G6vUuIsRnKS6KMfnHhSy0A")
+        GMSServices.provideAPIKey(apiKey)
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()

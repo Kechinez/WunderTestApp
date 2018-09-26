@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import CoreLocation
 
 public enum CarCondition: String {
     case good             = "okIcon.png"
@@ -17,14 +18,16 @@ public enum CarCondition: String {
 
 struct Car {
     let address: String
-    let coordinates: [Float]
+    let coordinates: CLLocationCoordinate2D//[Double]
     let engineType: String
     let exterior: CarCondition
     let fuel: Int
     let interior: CarCondition
     let name: String
     let vin: String
-
+    var stringCoordinates: String {
+        return String("\(coordinates.latitude)\(coordinates.longitude)")
+    }
 
 }
 
@@ -51,6 +54,18 @@ extension Locations: Decodable {
 }
 
 
+//extension Array {
+//    
+//    func getCoordinates() -> [] {
+//        guard self is [Car] else { return }
+//        for car in (self as! [Car]) {
+//            car
+//        }
+//
+//    }
+//}
+
+
 
 extension Car: Decodable {
     
@@ -70,9 +85,13 @@ extension Car: Decodable {
         let container = try decoder.container(keyedBy: CarStructKeys.self)
         
         let address = try container.decode(String.self, forKey: .address)
-        let coordinates = try container.decode([Float].self, forKey: .coordinates)
         let engineType = try container.decode(String.self, forKey: .engineType)
         
+        let tempDoubleCoordinates = try container.decode([Double].self, forKey: .coordinates)
+        let latitude = tempDoubleCoordinates[1]
+        let longitude = tempDoubleCoordinates[0]
+        let coordinates = CLLocationCoordinate2D(latitude: latitude, longitude: longitude)
+
         let tempStringExterior = try container.decode(String.self, forKey: .exterior)
         let exterior = (tempStringExterior == "GOOD" ? CarCondition.good : CarCondition.unacceptable)
         
