@@ -8,13 +8,20 @@
 
 import Foundation
 
+public enum CarCondition: String {
+    case good             = "okIcon.png"
+    case unacceptable     = "badIcon.png"
+}
+
+
+
 struct Car {
     let address: String
     let coordinates: [Float]
     let engineType: String
-    let exterior: String
+    let exterior: CarCondition
     let fuel: Int
-    let interior: String
+    let interior: CarCondition
     let name: String
     let vin: String
 
@@ -58,15 +65,21 @@ extension Car: Decodable {
         case vin = "vin"
     }
 
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CarStructKeys.self)
         
         let address = try container.decode(String.self, forKey: .address)
         let coordinates = try container.decode([Float].self, forKey: .coordinates)
         let engineType = try container.decode(String.self, forKey: .engineType)
-        let exterior = try container.decode(String.self, forKey: .exterior)
+        
+        let tempStringExterior = try container.decode(String.self, forKey: .exterior)
+        let exterior = (tempStringExterior == "GOOD" ? CarCondition.good : CarCondition.unacceptable)
+        
+        let tempStringInterior = try container.decode(String.self, forKey: .interior)
+        let interior = (tempStringInterior == "GOOD" ? CarCondition.good : CarCondition.unacceptable)
+
         let fuel = try container.decode(Int.self, forKey: .fuel)
-        let interior = try container.decode(String.self, forKey: .interior)
         let name = try container.decode(String.self, forKey: .name)
         let vin = try container.decode(String.self, forKey: .vin)
 
@@ -74,9 +87,6 @@ extension Car: Decodable {
         
     }
     
-
-
-
 }
 
 

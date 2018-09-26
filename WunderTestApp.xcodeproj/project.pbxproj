@@ -14,6 +14,9 @@
 		3DBCB562215905AF006B7421 /* CarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB561215905AF006B7421 /* CarsView.swift */; };
 		3DBCB56421590F2F006B7421 /* NetworkManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB56321590F2F006B7421 /* NetworkManager.swift */; };
 		3DBCB566215916D7006B7421 /* Car.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB565215916D7006B7421 /* Car.swift */; };
+		3DBCB58B215A3601006B7421 /* CarsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB58A215A3601006B7421 /* CarsTableViewCell.swift */; };
+		3DBCB58F215A4CBF006B7421 /* OpenSans-Semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCB58D215A4CBF006B7421 /* OpenSans-Semibold.ttf */; };
+		3DBCB590215A4CBF006B7421 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 3DBCB58E215A4CBF006B7421 /* OpenSans-Regular.ttf */; };
 		E20A4A1978586626810D5E13 /* Pods_WunderTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B144D3FE1769E83C8D942E /* Pods_WunderTestApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -29,6 +32,9 @@
 		3DBCB561215905AF006B7421 /* CarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsView.swift; sourceTree = "<group>"; };
 		3DBCB56321590F2F006B7421 /* NetworkManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkManager.swift; sourceTree = "<group>"; };
 		3DBCB565215916D7006B7421 /* Car.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Car.swift; sourceTree = "<group>"; };
+		3DBCB58A215A3601006B7421 /* CarsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarsTableViewCell.swift; sourceTree = "<group>"; };
+		3DBCB58D215A4CBF006B7421 /* OpenSans-Semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Semibold.ttf"; sourceTree = "<group>"; };
+		3DBCB58E215A4CBF006B7421 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		44B144D3FE1769E83C8D942E /* Pods_WunderTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WunderTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -65,6 +71,7 @@
 		3DBCB54C2158EF18006B7421 /* WunderTestApp */ = {
 			isa = PBXGroup;
 			children = (
+				3DBCB58C215A4C8D006B7421 /* Fonts */,
 				3DBCB54D2158EF18006B7421 /* AppDelegate.swift */,
 				3DBCB5542158EF19006B7421 /* Assets.xcassets */,
 				3DBCB5562158EF19006B7421 /* LaunchScreen.storyboard */,
@@ -73,8 +80,18 @@
 				3DBCB561215905AF006B7421 /* CarsView.swift */,
 				3DBCB56321590F2F006B7421 /* NetworkManager.swift */,
 				3DBCB565215916D7006B7421 /* Car.swift */,
+				3DBCB58A215A3601006B7421 /* CarsTableViewCell.swift */,
 			);
 			path = WunderTestApp;
+			sourceTree = "<group>";
+		};
+		3DBCB58C215A4C8D006B7421 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				3DBCB58E215A4CBF006B7421 /* OpenSans-Regular.ttf */,
+				3DBCB58D215A4CBF006B7421 /* OpenSans-Semibold.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		8AC91117B9070F491B0582AA /* Frameworks */ = {
@@ -155,7 +172,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3DBCB58F215A4CBF006B7421 /* OpenSans-Semibold.ttf in Resources */,
 				3DBCB5582158EF19006B7421 /* LaunchScreen.storyboard in Resources */,
+				3DBCB590215A4CBF006B7421 /* OpenSans-Regular.ttf in Resources */,
 				3DBCB5552158EF19006B7421 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -223,6 +242,7 @@
 			files = (
 				3DBCB56421590F2F006B7421 /* NetworkManager.swift in Sources */,
 				3DBCB560215904DB006B7421 /* CarsTableViewController.swift in Sources */,
+				3DBCB58B215A3601006B7421 /* CarsTableViewCell.swift in Sources */,
 				3DBCB566215916D7006B7421 /* Car.swift in Sources */,
 				3DBCB562215905AF006B7421 /* CarsView.swift in Sources */,
 				3DBCB54E2158EF18006B7421 /* AppDelegate.swift in Sources */,

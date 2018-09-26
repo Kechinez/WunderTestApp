@@ -17,6 +17,7 @@ class CarsView: UIView {
     private let _carsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        tableView.register(CarsTableViewCell.self, forCellReuseIdentifier: "carCellId")
         return tableView
     }()
 
@@ -30,8 +31,6 @@ class CarsView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
-    
     
     
     private func setupConstraints() {
