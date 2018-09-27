@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
-        window?.rootViewController = UINavigationController(rootViewController: CarsTableViewController())
+        window?.rootViewController = UINavigationController(rootViewController: ParentViewController())
     
         return true
     }

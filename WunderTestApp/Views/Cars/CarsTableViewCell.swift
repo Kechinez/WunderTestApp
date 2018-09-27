@@ -12,38 +12,50 @@ class CarsTableViewCell: UITableViewCell {
 
     private let nameLabel: UILabel = {
         let label = UILabel()
+        label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.setTextAppearance(with: 18)
+        label.font = UIFont(name: "OpenSans-Semibold", size: CGFloat.calculateFontSize(from: 18))
+        label.textColor = #colorLiteral(red: 0.3222360287, green: 0.7207511944, blue: 0.9686274529, alpha: 1)
         return label
     }()
     private let exteriorLabel: UILabel = {
         let label = UILabel()
+        label.sizeToFit()
+
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Vehicle's exterior"
-        label.setTextAppearance(with: CGFloat.calculateFontSize(from: 15))
+        label.font = UIFont(name: "OpenSans", size: CGFloat.calculateFontSize(from: 14))
+        label.textColor = #colorLiteral(red: 0.1203799175, green: 0.1203799175, blue: 0.1203799175, alpha: 1)
         return label
     }()
     private let interiorLabel: UILabel = {
         let label = UILabel()
+        label.sizeToFit()
+
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Vehicle's interior"
-        label.setTextAppearance(with: CGFloat.calculateFontSize(from: 15))
+        label.font = UIFont(name: "OpenSans", size: CGFloat.calculateFontSize(from: 14))
+        label.textColor = #colorLiteral(red: 0.1203799175, green: 0.1203799175, blue: 0.1203799175, alpha: 1)
         return label
     }()
     private let exteriorImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        //imageView.tintColor = .white
         return imageView
     }()
     private let interiorImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
-        //imageView.tintColor = .white
         return imageView
     }()
     private let fuelLevelImage: UIImageView = {
         let imageView = UIImageView()
+        imageView.clipsToBounds = true
+        imageView.contentMode = .scaleAspectFit
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
@@ -85,57 +97,62 @@ class CarsTableViewCell: UITableViewCell {
     
     
     private func setFuelImageWithColor(accordingToThe fuelLevel: Int) {
-        let image = UIImage(named: "fuelLevelIcon.png")!
+        let image = UIImage(named: "fuelPanelIcon.png")!
         let tintedImage = image.withRenderingMode(.alwaysTemplate)
         fuelLevelImage.image = tintedImage
-        switch fuelLevel {
-        case 0...10:
-            fuelLevelImage.tintColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
-        case 11...25:
-            fuelLevelImage.tintColor = #colorLiteral(red: 1, green: 0.6253936491, blue: 0.3428731862, alpha: 1)
-        case 26...40:
-            fuelLevelImage.tintColor = #colorLiteral(red: 1, green: 0.7997302989, blue: 0.336249338, alpha: 1)
-        case 41...60:
-            fuelLevelImage.tintColor = #colorLiteral(red: 1, green: 0.9400218825, blue: 0.3274366943, alpha: 1)
-        case 61...75:
-            fuelLevelImage.tintColor = #colorLiteral(red: 0.9079411833, green: 1, blue: 0.3755851742, alpha: 1)
-        case 76...90:
-            fuelLevelImage.tintColor = #colorLiteral(red: 0.6647979618, green: 1, blue: 0.28811851, alpha: 1)
-        case 91...100:
-            fuelLevelImage.tintColor = #colorLiteral(red: 0.4602438957, green: 1, blue: 0.5367191274, alpha: 1)
-
-        default:
-            break
-        }
+//        switch fuelLevel {
+//        case 0...10:
+//            fuelLevelImage.tintColor = #colorLiteral(red: 0.9372549057, green: 0.3490196168, blue: 0.1921568662, alpha: 1)
+//        case 11...25:
+//            fuelLevelImage.tintColor = #colorLiteral(red: 1, green: 0.6253936491, blue: 0.3428731862, alpha: 1)
+//        case 26...40:
+//            fuelLevelImage.tintColor = #colorLiteral(red: 1, green: 0.7997302989, blue: 0.336249338, alpha: 1)
+//        case 41...60:
+//            fuelLevelImage.tintColor = #colorLiteral(red: 1, green: 0.9400218825, blue: 0.3274366943, alpha: 1)
+//        case 61...75:
+//            fuelLevelImage.tintColor = #colorLiteral(red: 0.9079411833, green: 1, blue: 0.3755851742, alpha: 1)
+//        case 76...90:
+//            fuelLevelImage.tintColor = #colorLiteral(red: 0.6647979618, green: 1, blue: 0.28811851, alpha: 1)
+//        case 91...100:
+//            fuelLevelImage.tintColor = #colorLiteral(red: 0.4602438957, green: 1, blue: 0.5367191274, alpha: 1)
+//
+//        default:
+//            break
+//        }
+    fuelLevelImage.tintColor = #colorLiteral(red: 0.1203799175, green: 0.1203799175, blue: 0.1203799175, alpha: 1)
     }
     
     
     private func setupConstraints() {
-        nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 5).isActive = true
+        nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 7).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
-        nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15).isActive = true
+        //nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15).isActive = true
         
-        exteriorLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 15).isActive = true
+        exteriorLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 7).isActive = true
         exteriorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
         
-        exteriorImage.leadingAnchor.constraint(equalTo: exteriorLabel.trailingAnchor, constant: 20).isActive = true
-        exteriorImage.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 20).isActive = true
+        exteriorImage.leadingAnchor.constraint(equalTo: exteriorLabel.trailingAnchor, constant: 17).isActive = true
+        exteriorImage.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 7).isActive = true
         exteriorImage.heightAnchor.constraint(equalTo: exteriorLabel.heightAnchor).isActive = true
         exteriorImage.widthAnchor.constraint(equalTo: exteriorLabel.heightAnchor).isActive = true
         
-        interiorLabel.topAnchor.constraint(equalTo: exteriorLabel.bottomAnchor, constant: 10).isActive = true
+        interiorLabel.topAnchor.constraint(equalTo: exteriorLabel.bottomAnchor, constant: 3).isActive = true
         interiorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
-        interiorLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -10).isActive = true
+        interiorLabel.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -7).isActive = true
         
-        interiorImage.leadingAnchor.constraint(equalTo: interiorLabel.trailingAnchor, constant: 20).isActive = true
-        interiorImage.topAnchor.constraint(equalTo: exteriorLabel.bottomAnchor, constant: 20).isActive = true
+        interiorImage.leadingAnchor.constraint(equalTo: exteriorLabel.trailingAnchor, constant: 17).isActive = true
+        interiorImage.topAnchor.constraint(equalTo: exteriorLabel.bottomAnchor, constant: 3).isActive = true
         interiorImage.heightAnchor.constraint(equalTo: interiorLabel.heightAnchor).isActive = true
         interiorImage.widthAnchor.constraint(equalTo: interiorLabel.heightAnchor).isActive = true
         
         fuelLevelImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         fuelLevelImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15).isActive = true
-        fuelLevelImage.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
-        fuelLevelImage.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.6).isActive = true
+        //fuelLevelImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
+        //fuelLevelImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
+        //fuelLevelImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
+        //fuelLevelImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
+        fuelLevelImage.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7).isActive = true
+        fuelLevelImage.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7).isActive = true
         
     }
 

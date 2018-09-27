@@ -12,6 +12,9 @@ class CarsMapView: UIView {
 
     let carsMap: GMSMapView = {
         let map = GMSMapView(frame: CGRect.zero)
+        map.isMyLocationEnabled = true
+        map.settings.myLocationButton = true
+         //CLLocationCoordinate2D(latitude: 53.541564, longitude: 9.994722)
         map.translatesAutoresizingMaskIntoConstraints = false
         return map
     }()

@@ -27,15 +27,26 @@ class CarsTableViewController: UIViewController, CLLocationManagerDelegate {
         let locationManager = CLLocationManager()
         locationManager.delegate = self
         
+        locationManager.requestAlwaysAuthorization()
+        if CLLocationManager.locationServicesEnabled(){
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyBest
+            locationManager.distanceFilter = 500
+            locationManager.requestWhenInUseAuthorization()
+            locationManager.requestAlwaysAuthorization()
+            locationManager.startUpdatingLocation()
+        }
+        
+        
         userLocation = locationManager.location
         
         
-        
+//        let c = Car(address: "", coordinates: CLLocationCoordinate2D(latitude: 233, longitude: 33), engineType: "sdsd", exterior: .good, fuel: 57, interior: .good, name: "WEWEEUIEU7876", vin: "333")
+//        cars.append(c)
         carsTableView.dataSource = self
         carsTableView.delegate = self
         
-        carsTableView.rowHeight = UITableViewAutomaticDimension
-        carsTableView.estimatedRowHeight = 300
+        
         
         NetworkManager.shared.getCars { [weak self] (result) in
             switch result {
@@ -60,14 +71,10 @@ class CarsTableViewController: UIViewController, CLLocationManagerDelegate {
 // MARK: - TableViewController Delegate
 extension CarsTableViewController: UITableViewDelegate {
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let nextVC = CarsMapViewController()
-        nextVC.delegate = self
-        navigationController?.pushViewController(nextVC, animated: true)
-        tableView.deselectRow(at: indexPath, animated: true)
-
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return UITableViewAutomaticDimension
+        
     }
-    
 }
 
 
@@ -91,6 +98,7 @@ extension CarsTableViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CarsTableViewCell
         let currentCar = cars[indexPath.row]
         cell.updateUI(with: currentCar)
+        print(cell.frame)
         return cell
     }
 

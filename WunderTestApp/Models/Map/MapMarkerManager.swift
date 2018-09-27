@@ -22,8 +22,9 @@ class MapMarkerManager {
     
     
     func setMarkersForVisibleArea() {
-        for car in delegate!.delegate!.cars {
-            
+        guard let cars = delegate?.dataSource?.cars else { return }
+        for car in cars {
+        
             if isCarVisibleOnMap(car: car) {
                 guard visibleMarkers[car.stringCoordinates] == nil else { continue }
                 let marker = GMSMarker()
@@ -37,6 +38,7 @@ class MapMarkerManager {
                 visibleMarkers.removeValue(forKey: car.stringCoordinates)
             }
         }
+        
         print(visibleMarkers.count)
     }
     
@@ -58,24 +60,27 @@ class MapMarkerManager {
     
     
     func removeMarkersExcept(_ marker: GMSMarker) {
-        map.clear()
-        marker.map = map
+        //map.clear()
+        for (_, item) in visibleMarkers {
+            guard item === marker else {
+                
+                item.map = nil
+                continue
+            }
+            
+            print("Zaraza blyat")
+            //marker.map = map
+        }
+        
+       // marker.map = map
     }
     
     func addMarkers() {
+        map.clear()
         for (_, marker) in visibleMarkers {
             marker.map = map
         }
     }
-    
-    //
-    //    DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) { [weak self] in
-    //
-    //    guard let `self` = self else {
-    //    return
-    //    }
-    
-    
     
     
 }

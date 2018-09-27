@@ -32,11 +32,13 @@ class NetworkManager {
     
     private let session = URLSession(configuration: .default)
     private let urlString = String("https://s3-us-west-2.amazonaws.com/wunderbucket/locations.json")
+    private var getRouteTask: URLSessionTask?
     
-    
+   
     func getRouteRequest(with startCoordinate: CLLocationCoordinate2D, and finishCoordinate: CLLocationCoordinate2D, completionHandler: @escaping (APIResult<Route>) -> ()) {
         
-        let session = URLSession.shared
+        getRouteTask?.cancel()
+        //let session = URLSession.shared
         let startStringCoordinate = startCoordinate.coordinatesToString()//self.coordinatesToString(with: startCoordinate)
         let finishStringCoordinate = finishCoordinate.coordinatesToString()//self.coordinatesToString(with: finishCoordinate)
         let stringURL = "https://maps.googleapis.com/maps/api/directions/json?origin=\(startStringCoordinate)&destination=\(finishStringCoordinate)&mode=driving&language=en&key=AIzaSyAmV1T_J6_noWuMYBJukYv3-eDBvhr3zmY"

@@ -13,11 +13,13 @@ class CarsView: UIView {
     var carsTableView: UITableView {
         return _carsTableView
     }
-    
+
     private let _carsTableView: UITableView = {
         let tableView = UITableView()
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(CarsTableViewCell.self, forCellReuseIdentifier: "carCellId")
+        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.estimatedRowHeight = 200
         return tableView
     }()
 
@@ -34,21 +36,13 @@ class CarsView: UIView {
     
     
     private func setupConstraints() {
-        if #available(iOS 11, *) {
+        
             let guide = self.safeAreaLayoutGuide
             carsTableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
             carsTableView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
             carsTableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
             carsTableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
-            
-        } else {
-            let margins = self.layoutMarginsGuide
-            let standardSpacing: CGFloat = 8.0
-            carsTableView.topAnchor.constraint(equalTo: margins.topAnchor, constant: standardSpacing).isActive = true
-            carsTableView.bottomAnchor.constraint(equalTo: margins.bottomAnchor, constant: standardSpacing).isActive = true
-            carsTableView.leadingAnchor.constraint(equalTo: self.leadingAnchor).isActive = true
-            carsTableView.trailingAnchor.constraint(equalTo: self.trailingAnchor).isActive = true
-        }
+        
     }
 
     
