@@ -46,10 +46,17 @@ class ParentViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         insertSegmentedControl()
-        
         //segmentedControl.initUI()
         //segmentedControl.selectedSegmentIndex = TabIndex.firstChildTab.rawValue
         displayCurrentTab(TabIndex.firstChildTab.rawValue)
+    }
+    
+    func setUpConstraints(for view: UIView) {
+        let guide = self.view.safeAreaLayoutGuide
+        view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -88,12 +95,17 @@ class ParentViewController: UIViewController {
             
             self.addChildViewController(vc)
             vc.didMove(toParentViewController: self)
+            vc.view.translatesAutoresizingMaskIntoConstraints = false
             
             vc.view.frame = view.bounds//self.contentView.bounds
             view.addSubview(vc.view)//self.contentView.addSubview(vc.view)
+            setUpConstraints(for: vc.view)
             self.currentViewController = vc
         }
     }
+    
+    
+    
     
     func viewControllerForSelectedSegmentIndex(_ index: Int) -> UIViewController? {
         var vc: UIViewController?

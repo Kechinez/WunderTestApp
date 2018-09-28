@@ -24,6 +24,7 @@
 		3DBCB5DC215CF890006B7421 /* ParentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB5DB215CF890006B7421 /* ParentViewController.swift */; };
 		3DBCB5DE215CFAA3006B7421 /* ParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB5DD215CFAA3006B7421 /* ParentView.swift */; };
 		3DBCB5E0215D2B6A006B7421 /* InfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB5DF215D2B6A006B7421 /* InfoWindow.swift */; };
+		3DBCB5E2215D741F006B7421 /* ArrowLogic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB5E1215D741F006B7421 /* ArrowLogic.swift */; };
 		E20A4A1978586626810D5E13 /* Pods_WunderTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B144D3FE1769E83C8D942E /* Pods_WunderTestApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -49,6 +50,7 @@
 		3DBCB5DB215CF890006B7421 /* ParentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentViewController.swift; sourceTree = "<group>"; };
 		3DBCB5DD215CFAA3006B7421 /* ParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParentView.swift; sourceTree = "<group>"; };
 		3DBCB5DF215D2B6A006B7421 /* InfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoWindow.swift; sourceTree = "<group>"; };
+		3DBCB5E1215D741F006B7421 /* ArrowLogic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowLogic.swift; sourceTree = "<group>"; };
 		44B144D3FE1769E83C8D942E /* Pods_WunderTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WunderTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -162,6 +164,7 @@
 			children = (
 				3DBCB5CA215B9332006B7421 /* CarsMapView.swift */,
 				3DBCB5DF215D2B6A006B7421 /* InfoWindow.swift */,
+				3DBCB5E1215D741F006B7421 /* ArrowLogic.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -357,6 +360,7 @@
 				3DBCB5DC215CF890006B7421 /* ParentViewController.swift in Sources */,
 				3DBCB5C9215B92F1006B7421 /* CarsMapViewController.swift in Sources */,
 				3DBCB58B215A3601006B7421 /* CarsTableViewCell.swift in Sources */,
+				3DBCB5E2215D741F006B7421 /* ArrowLogic.swift in Sources */,
 				3DBCB566215916D7006B7421 /* Car.swift in Sources */,
 				3DBCB5E0215D2B6A006B7421 /* InfoWindow.swift in Sources */,
 				3DBCB562215905AF006B7421 /* CarsView.swift in Sources */,

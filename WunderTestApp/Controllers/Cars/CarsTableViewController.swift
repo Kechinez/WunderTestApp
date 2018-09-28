@@ -98,7 +98,7 @@ extension CarsTableViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CarsTableViewCell
         let currentCar = cars[indexPath.row]
         cell.updateUI(with: currentCar)
-        print(cell.frame)
+        cell.fuelLevelImage.setNeedsDisplay()
         return cell
     }
 

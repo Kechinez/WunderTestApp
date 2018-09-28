@@ -52,15 +52,15 @@ class CarsTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    private let fuelLevelImage: UIImageView = {
+    let fuelLevelImage: UIImageView = {
         let imageView = UIImageView()
         imageView.clipsToBounds = true
-        imageView.contentMode = .scaleAspectFit
+        imageView.contentMode = .scaleAspectFill
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
     
-    
+    private var fuel: Int?
 
     //MARK: - Init
     
@@ -82,7 +82,39 @@ class CarsTableViewCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    
+    func drawInImage() {
+        let manager = ArrowLogic()
+        let center = manager.calculateCenter(with: fuelLevelImage.image!.scale)
+        let arrrowPoint = manager.calculatePoint(using: fuel!)
+        let realSize = manager.calculateWithScale(point: arrrowPoint, with: fuelLevelImage.image!.scale)
+        
+        print(realSize)
+        print(center)
+        print(fuelLevelImage.frame)
+        let startingImage = fuelLevelImage.image!
+        UIGraphicsBeginImageContext(startingImage.size)
+        
+        // Draw the starting image in the current context as background
+        startingImage.draw(at: CGPoint.zero)
+        
+        // Get the current context
+        let context = UIGraphicsGetCurrentContext()!
+        
+        // Draw a red line
+        context.setLineWidth(3.0)
+        context.setStrokeColor(UIColor.red.cgColor)
+        context.move(to: center)
+        context.addLine(to: realSize)
+        context.strokePath()
+        
+        
+        // Save the context as a new UIImage
+        let myImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        // Return modified image
+            fuelLevelImage.image = myImage
+    }
     
     
     //MARK: - Additional methods
@@ -91,13 +123,14 @@ class CarsTableViewCell: UITableViewCell {
         nameLabel.text = car.name
         exteriorImage.image = UIImage(named: car.exterior.rawValue)
         interiorImage.image = UIImage(named: car.interior.rawValue)
+        fuel = car.fuel
         setFuelImageWithColor(accordingToThe: car.fuel)
     }
     
     
     
     private func setFuelImageWithColor(accordingToThe fuelLevel: Int) {
-        let image = UIImage(named: "fuelPanelIcon.png")!
+        let image = UIImage(named: "fuelIcon1.png")!
         let tintedImage = image.withRenderingMode(.alwaysTemplate)
         fuelLevelImage.image = tintedImage
 //        switch fuelLevel {
@@ -120,13 +153,13 @@ class CarsTableViewCell: UITableViewCell {
 //            break
 //        }
     fuelLevelImage.tintColor = #colorLiteral(red: 0.1203799175, green: 0.1203799175, blue: 0.1203799175, alpha: 1)
+        drawInImage()
     }
     
     
     private func setupConstraints() {
         nameLabel.topAnchor.constraint(equalTo: self.topAnchor, constant: 7).isActive = true
         nameLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
-        //nameLabel.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15).isActive = true
         
         exteriorLabel.topAnchor.constraint(equalTo: nameLabel.bottomAnchor, constant: 7).isActive = true
         exteriorLabel.leadingAnchor.constraint(equalTo: self.leadingAnchor, constant: 15).isActive = true
@@ -147,12 +180,9 @@ class CarsTableViewCell: UITableViewCell {
         
         fuelLevelImage.centerYAnchor.constraint(equalTo: self.centerYAnchor).isActive = true
         fuelLevelImage.trailingAnchor.constraint(equalTo: self.trailingAnchor, constant: -15).isActive = true
-        //fuelLevelImage.heightAnchor.constraint(equalToConstant: 40).isActive = true
-        //fuelLevelImage.widthAnchor.constraint(equalToConstant: 40).isActive = true
-        //fuelLevelImage.topAnchor.constraint(equalTo: self.topAnchor, constant: 20).isActive = true
-        //fuelLevelImage.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -20).isActive = true
-        fuelLevelImage.widthAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7).isActive = true
-        fuelLevelImage.heightAnchor.constraint(equalTo: self.heightAnchor, multiplier: 0.7).isActive = true
+        fuelLevelImage.heightAnchor.constraint(equalToConstant: 66).isActive = true
+        fuelLevelImage.widthAnchor.constraint(equalToConstant: 66).isActive = true
+        
         
     }
 
