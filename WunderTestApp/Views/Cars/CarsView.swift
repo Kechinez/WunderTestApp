@@ -13,9 +13,9 @@ class CarsView: UIView {
     var carsTableView: UITableView {
         return _carsTableView
     }
-
     private let _carsTableView: UITableView = {
         let tableView = UITableView()
+        tableView.backgroundColor = #colorLiteral(red: 0.9226681472, green: 0.9226681472, blue: 0.9226681472, alpha: 1)
         tableView.translatesAutoresizingMaskIntoConstraints = false
         tableView.register(CarsTableViewCell.self, forCellReuseIdentifier: "carCellId")
         tableView.rowHeight = UITableViewAutomaticDimension
@@ -23,7 +23,8 @@ class CarsView: UIView {
         return tableView
     }()
 
-
+    
+    //MARK: - init
     override init(frame: CGRect) {
         super.init(frame: frame)
         self.addSubview(carsTableView)
@@ -35,15 +36,15 @@ class CarsView: UIView {
     }
     
     
+    //MARK: - Updating constraints
     private func setupConstraints() {
         
-            let guide = self.safeAreaLayoutGuide
-            carsTableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
-            carsTableView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
-            carsTableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
-            carsTableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
+        let guide = self.safeAreaLayoutGuide
+        carsTableView.bottomAnchor.constraint(equalTo: guide.bottomAnchor).isActive = true
+        carsTableView.topAnchor.constraint(equalTo: guide.topAnchor).isActive = true
+        carsTableView.leadingAnchor.constraint(equalTo: guide.leadingAnchor).isActive = true
+        carsTableView.trailingAnchor.constraint(equalTo: guide.trailingAnchor).isActive = true
         
     }
-
     
 }

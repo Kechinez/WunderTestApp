@@ -12,11 +12,12 @@ import CoreLocation
 class CarsTableViewController: UIViewController, CLLocationManagerDelegate {
     private let cellId = "carCellId"
     var cars: [Car] = []
-    var userLocation:  CLLocation?
     private unowned var carsTableView: UITableView {
         return (view as! CarsView).carsTableView
     }
     
+    
+    //MARK: - ViewController lifecycle methods
     override func loadView() {
        view = CarsView()
     }
@@ -37,16 +38,8 @@ class CarsTableViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.startUpdatingLocation()
         }
         
-        
-        userLocation = locationManager.location
-        
-        
-//        let c = Car(address: "", coordinates: CLLocationCoordinate2D(latitude: 233, longitude: 33), engineType: "sdsd", exterior: .good, fuel: 57, interior: .good, name: "WEWEEUIEU7876", vin: "333")
-//        cars.append(c)
         carsTableView.dataSource = self
         carsTableView.delegate = self
-        
-        
         
         NetworkManager.shared.getCars { [weak self] (result) in
             switch result {
@@ -60,11 +53,7 @@ class CarsTableViewController: UIViewController, CLLocationManagerDelegate {
         
     }
     
-    
-    
 }
-
-
 
 
 
@@ -78,9 +67,6 @@ extension CarsTableViewController: UITableViewDelegate {
 }
 
 
-
-
-
 //MARK:- TableView Data Source
 extension CarsTableViewController: UITableViewDataSource {
     
@@ -88,11 +74,9 @@ extension CarsTableViewController: UITableViewDataSource {
         return 1
     }
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return cars.count
     }
-    
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CarsTableViewCell

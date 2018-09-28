@@ -15,12 +15,12 @@ class MapMarkerManager {
     let map: GMSMapView
     var visibleMarkers: [String: GMSMarker] = [:]
     
-    
+    //MARK: - init
     init(map: GMSMapView) {
         self.map = map
     }
     
-    
+    //MARK: - Set markers only for visible area on the map
     func setMarkersForVisibleArea() {
         guard let cars = delegate?.dataSource?.cars else { return }
         for car in cars {
@@ -38,10 +38,7 @@ class MapMarkerManager {
                 visibleMarkers.removeValue(forKey: car.stringCoordinates)
             }
         }
-        
-        print(visibleMarkers.count)
     }
-    
     
     private func isCarVisibleOnMap(car: Car) -> Bool {
         
@@ -58,21 +55,14 @@ class MapMarkerManager {
         return true
     }
     
-    
+    //MARK: - Removing/Adding markers
     func removeMarkersExcept(_ marker: GMSMarker) {
-        //map.clear()
         for (_, item) in visibleMarkers {
             guard item === marker else {
-                
                 item.map = nil
                 continue
             }
-            
-            print("Zaraza blyat")
-            //marker.map = map
         }
-        
-       // marker.map = map
     }
     
     func addMarkers() {
@@ -82,15 +72,6 @@ class MapMarkerManager {
         }
     }
     
-    
 }
-
-//    func setCameraAndMarkerOnTheMap(using coordinates: CLLocationCoordinate2D) {
-//        let placeMarker = GMSMarker(position: coordinates)
-//        placeMarker.map = self.map
-//        let camera = GMSCameraPosition.camera(withLatitude: coordinates.latitude, longitude: coordinates.longitude, zoom: 15.0)
-//        self.map.camera = camera
-//    }
-
 
 

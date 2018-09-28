@@ -21,11 +21,22 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         window = UIWindow(frame: UIScreen.main.bounds)
         window?.makeKeyAndVisible()
         window?.rootViewController = UINavigationController(rootViewController: ParentViewController())
-    
+        
+        UIApplication.shared.statusBarStyle = .lightContent
+        UINavigationBar.appearance().barTintColor = #colorLiteral(red: 0.1212523794, green: 0.1212523794, blue: 0.1212523794, alpha: 1)
+        UINavigationBar.appearance().tintColor = #colorLiteral(red: 0.9664102157, green: 0.9664102157, blue: 0.9664102157, alpha: 1)
+        UINavigationBar.appearance().isTranslucent = false
+        
+        if let segControlFont = UIFont(name: "OpenSans", size: 15) {
+            let segControlAttributesDictionary: [NSAttributedStringKey: Any] = [
+                NSAttributedStringKey(rawValue: NSAttributedStringKey.foregroundColor.rawValue): #colorLiteral(red: 0.9664102157, green: 0.9664102157, blue: 0.9664102157, alpha: 1),
+                NSAttributedStringKey(rawValue: NSAttributedStringKey.font.rawValue): segControlFont]
+            UISegmentedControl.appearance().setTitleTextAttributes(segControlAttributesDictionary, for: .normal)
+            
+        }
+        
         return true
     }
-
-    
 
     func applicationWillResignActive(_ application: UIApplication) {}
     func applicationDidEnterBackground(_ application: UIApplication) {}

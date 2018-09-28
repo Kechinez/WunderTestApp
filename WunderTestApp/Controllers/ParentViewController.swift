@@ -10,16 +10,12 @@ import UIKit
 
 class ParentViewController: UIViewController {
 
-    
-    enum TabIndex : Int {
+    private enum TabIndex : Int {
         case firstChildTab = 0
         case secondChildTab = 1
     }
     
-    //var segmentedControl: TabySegmentedControl!
-    
     var isInitialSwitching = true
-    
     var currentViewController: UIViewController?
     lazy var firstChildTabVC: CarsTableViewController? = {
         let firstChildTabVC = CarsTableViewController()
@@ -30,33 +26,12 @@ class ParentViewController: UIViewController {
         return secondChildTabVC
     }()
     
-//    unowned var parentView: ParentView {
-//        return (view as! ParentView)
-//    }
-    
-    
-    // MARK: - View Controller Lifecycle
-    
-    
-//    override func loadView() {
-//        view = ParentView()
-//    }
-    
-    
+
+    //MARK: - ViewController lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         insertSegmentedControl()
-        //segmentedControl.initUI()
-        //segmentedControl.selectedSegmentIndex = TabIndex.firstChildTab.rawValue
         displayCurrentTab(TabIndex.firstChildTab.rawValue)
-    }
-    
-    func setUpConstraints(for view: UIView) {
-        let guide = self.view.safeAreaLayoutGuide
-        view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
-        view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
-        view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -66,6 +41,14 @@ class ParentViewController: UIViewController {
         }
     }
     
+    
+    //MARK: - UI updateing methods
+    private func setUpConstraints(for view: UIView) {
+        view.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        view.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        view.trailingAnchor.constraint(equalTo: self.view.trailingAnchor).isActive = true
+        view.leadingAnchor.constraint(equalTo: self.view.leadingAnchor).isActive = true
+    }
     
     private func insertSegmentedControl() {
         let items = ["Cars list", "Map"]
@@ -80,11 +63,10 @@ class ParentViewController: UIViewController {
     @objc func switchTabs(_ sender: UISegmentedControl) {
         self.currentViewController!.view.removeFromSuperview()
         self.currentViewController!.removeFromParentViewController()
-        
         displayCurrentTab(sender.selectedSegmentIndex)
     }
     
-    func displayCurrentTab(_ tabIndex: Int){
+    private func displayCurrentTab(_ tabIndex: Int){
         if let vc = viewControllerForSelectedSegmentIndex(tabIndex) {
             
             if tabIndex == TabIndex.secondChildTab.rawValue && isInitialSwitching {
@@ -97,17 +79,14 @@ class ParentViewController: UIViewController {
             vc.didMove(toParentViewController: self)
             vc.view.translatesAutoresizingMaskIntoConstraints = false
             
-            vc.view.frame = view.bounds//self.contentView.bounds
-            view.addSubview(vc.view)//self.contentView.addSubview(vc.view)
+            vc.view.frame = view.bounds
+            view.addSubview(vc.view)
             setUpConstraints(for: vc.view)
             self.currentViewController = vc
         }
     }
     
-    
-    
-    
-    func viewControllerForSelectedSegmentIndex(_ index: Int) -> UIViewController? {
+    private func viewControllerForSelectedSegmentIndex(_ index: Int) -> UIViewController? {
         var vc: UIViewController?
         switch index {
         case TabIndex.firstChildTab.rawValue :
@@ -117,10 +96,7 @@ class ParentViewController: UIViewController {
         default:
             return nil
         }
-        
         return vc
     }
     
-    
-
 }

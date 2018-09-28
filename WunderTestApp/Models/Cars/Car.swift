@@ -9,16 +9,15 @@
 import Foundation
 import CoreLocation
 
+
 public enum CarCondition: String {
     case good             = "okIcon.png"
     case unacceptable     = "badIcon.png"
 }
 
-
-
 struct Car {
     let address: String
-    let coordinates: CLLocationCoordinate2D//[Double]
+    let coordinates: CLLocationCoordinate2D
     let engineType: String
     let exterior: CarCondition
     let fuel: Int
@@ -31,11 +30,11 @@ struct Car {
 
 }
 
-
 struct Locations {
     let placemarks: [Car]
 }
 
+//MARK: - Location's Decodable implementation
 extension Locations: Decodable {
     
     private enum LocationStructKeys: String, CodingKey {
@@ -49,24 +48,9 @@ extension Locations: Decodable {
         self.init(placemarks: placemarks)
         
     }
-    
-    
 }
 
-
-//extension Array {
-//    
-//    func getCoordinates() -> [] {
-//        guard self is [Car] else { return }
-//        for car in (self as! [Car]) {
-//            car
-//        }
-//
-//    }
-//}
-
-
-
+//MARK: Car's Decodable implementation
 extension Car: Decodable {
     
    public enum CarStructKeys: String, CodingKey {
@@ -80,7 +64,6 @@ extension Car: Decodable {
         case vin = "vin"
     }
 
-    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CarStructKeys.self)
         
@@ -103,9 +86,7 @@ extension Car: Decodable {
         let vin = try container.decode(String.self, forKey: .vin)
 
         self.init(address: address, coordinates: coordinates, engineType: engineType, exterior: exterior, fuel: fuel, interior: interior, name: name, vin: vin)
-        
     }
-    
 }
 
 

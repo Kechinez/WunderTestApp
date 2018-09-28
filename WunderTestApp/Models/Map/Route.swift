@@ -14,7 +14,7 @@ struct Route {
     let time: String
     let polylinePath: String
     
-
+    //MARK: - failable init
     init?(data: JSON) {
         guard let routesArray = data["routes"] as? NSArray else { return nil }
         guard let routes = routesArray[0] as? JSON else { return nil }
