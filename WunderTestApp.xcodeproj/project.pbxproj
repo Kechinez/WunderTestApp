@@ -25,6 +25,8 @@
 		3DBCB5E0215D2B6A006B7421 /* InfoWindow.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB5DF215D2B6A006B7421 /* InfoWindow.swift */; };
 		3DBCB5E2215D741F006B7421 /* ArrowCoordinatesMaker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DBCB5E1215D741F006B7421 /* ArrowCoordinatesMaker.swift */; };
 		3DD2ECB4215E8C2300F466D5 /* FuelImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2ECB3215E8C2300F466D5 /* FuelImageView.swift */; };
+		3DD2ECB6215F776300F466D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2ECB5215F776300F466D5 /* Extensions.swift */; };
+		3DD2ECB8215F7E7D00F466D5 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2ECB7215F7E7D00F466D5 /* ErrorManager.swift */; };
 		E20A4A1978586626810D5E13 /* Pods_WunderTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B144D3FE1769E83C8D942E /* Pods_WunderTestApp.framework */; };
 /* End PBXBuildFile section */
 
@@ -51,6 +53,8 @@
 		3DBCB5DF215D2B6A006B7421 /* InfoWindow.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoWindow.swift; sourceTree = "<group>"; };
 		3DBCB5E1215D741F006B7421 /* ArrowCoordinatesMaker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ArrowCoordinatesMaker.swift; sourceTree = "<group>"; };
 		3DD2ECB3215E8C2300F466D5 /* FuelImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelImageView.swift; sourceTree = "<group>"; };
+		3DD2ECB5215F776300F466D5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
+		3DD2ECB7215F7E7D00F466D5 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
 		44B144D3FE1769E83C8D942E /* Pods_WunderTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WunderTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -194,6 +198,8 @@
 				3DBCB5592158EF19006B7421 /* Info.plist */,
 				3DBCB54D2158EF18006B7421 /* AppDelegate.swift */,
 				3DBCB58C215A4C8D006B7421 /* Fonts */,
+				3DD2ECB5215F776300F466D5 /* Extensions.swift */,
+				3DD2ECB7215F7E7D00F466D5 /* ErrorManager.swift */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -354,6 +360,8 @@
 			files = (
 				3DBCB56421590F2F006B7421 /* NetworkManager.swift in Sources */,
 				3DBCB560215904DB006B7421 /* CarsTableViewController.swift in Sources */,
+				3DD2ECB8215F7E7D00F466D5 /* ErrorManager.swift in Sources */,
+				3DD2ECB6215F776300F466D5 /* Extensions.swift in Sources */,
 				3DBCB5CD215BC682006B7421 /* MapMarkerManager.swift in Sources */,
 				3DBCB5CF215BDC28006B7421 /* Route.swift in Sources */,
 				3DBCB5DC215CF890006B7421 /* ParentViewController.swift in Sources */,

@@ -25,7 +25,7 @@ class CarsMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
         return dataSource!.cars.isEmpty
     }
     lazy private var infoWindow: InfoWindow = {
-        return InfoWindow(frame: CGRect(x: 0, y: 0, width: 185, height: 47))
+        return InfoWindow(frame: CGRect(x: 0, y: 0, width: 192, height: 47))
     }()
     
     
@@ -89,29 +89,19 @@ class CarsMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
     
     //MARK: - Network
     private func getRoute(marker: GMSMarker) {
-//        NetworkManager.shared.getRouteRequest(with: carsMap.myLocation!.coordinate, and: marker.position) { [weak self, marker]  (result) in
-//            switch result {
-//            case .Success(let route):
-//                self?.infoWindow.setupLabels(with: route.distance, time: route.time)
-//                self?.buildRoute(polyline: route.polylinePath)
-//                self?.carsMap.selectedMarker = marker
-//            case .Failure(let error):
-//                print(error)
-//            }
-//        }
         
-        NetworkManager.shared.getRouteRequest(with: userLocation, and: marker.position) { [weak self, marker]  (result) in
+        NetworkManager.shared.getRoute(with: userLocation, and: marker.position) { [weak self, marker]  (result) in
             switch result {
-            case .Success(let route):
+            case .success(let route):
                 self?.infoWindow.setupLabels(with: route.distance, time: route.time)
                 self?.buildRoute(polyline: route.polylinePath)
                 self?.carsMap.selectedMarker = marker
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
             }
         }
-        
     }
-
+  
+    
 }
 

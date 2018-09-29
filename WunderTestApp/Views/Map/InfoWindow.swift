@@ -24,12 +24,12 @@ class InfoWindow: UIView {
         self.layer.shadowOffset = CGSize(width: 20, height: 20)
         self.layer.shadowRadius = 15
         let tempDistanceLabel = UILabel(frame: CGRect(x: 6, y: 8, width: self.bounds.width - 12, height: 14))
-        tempDistanceLabel.font = UIFont(name: "OpenSans-Semibold", size: CGFloat.calculateFontSize(from: 13))
+        tempDistanceLabel.setTextAppearance(with: .semiBoldStyle, textSize: 14)
         tempDistanceLabel.textColor = #colorLiteral(red: 0.9664102157, green: 0.9664102157, blue: 0.9664102157, alpha: 1)
         distanceLabel = tempDistanceLabel
         
         let tempTimeLabel = UILabel(frame: CGRect(x: 6, y: tempDistanceLabel.frame.height + 11, width: self.bounds.width - 12, height: 14))
-        tempTimeLabel.font = UIFont(name: "OpenSans-Semibold", size: CGFloat.calculateFontSize(from: 13))
+        tempTimeLabel.setTextAppearance(with: .semiBoldStyle, textSize: 13)
         tempTimeLabel.textColor = #colorLiteral(red: 0.9664102157, green: 0.9664102157, blue: 0.9664102157, alpha: 1)
         timeLabel = tempTimeLabel
         

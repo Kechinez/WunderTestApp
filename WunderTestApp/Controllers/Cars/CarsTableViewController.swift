@@ -43,10 +43,10 @@ class CarsTableViewController: UIViewController, CLLocationManagerDelegate {
         
         NetworkManager.shared.getCars { [weak self] (result) in
             switch result {
-            case .Success(let tempCars):
+            case .success(let tempCars):
                 self?.cars = tempCars
                 self?.carsTableView.reloadData()
-            case .Failure(let error):
+            case .failure(let error):
                 print(error)
             }
         }
@@ -87,16 +87,6 @@ extension CarsTableViewController: UITableViewDataSource {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 

@@ -14,18 +14,15 @@ class CarsTableViewCell: UITableViewCell {
         let label = UILabel()
         label.sizeToFit()
         label.translatesAutoresizingMaskIntoConstraints = false
-        label.font = UIFont(name: "OpenSans-Semibold", size: CGFloat.calculateFontSize(from: 18))
-        label.textColor = #colorLiteral(red: 0.2880049839, green: 0.6498888229, blue: 0.8780103844, alpha: 1)
+        label.setTextAppearance(with: .semiBoldStyle, textSize: 18)
         return label
     }()
     private let exteriorLabel: UILabel = {
         let label = UILabel()
         label.sizeToFit()
-
+        label.setTextAppearance(with: .regularStyle, textSize: 15)
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Vehicle's exterior"
-        label.font = UIFont(name: "OpenSans", size: CGFloat.calculateFontSize(from: 15))
-        label.textColor = #colorLiteral(red: 0.1203799175, green: 0.1203799175, blue: 0.1203799175, alpha: 1)
         return label
     }()
     private let interiorLabel: UILabel = {
@@ -34,8 +31,7 @@ class CarsTableViewCell: UITableViewCell {
 
         label.translatesAutoresizingMaskIntoConstraints = false
         label.text = "Vehicle's interior"
-        label.font = UIFont(name: "OpenSans", size: CGFloat.calculateFontSize(from: 15))
-        label.textColor = #colorLiteral(red: 0.1203799175, green: 0.1203799175, blue: 0.1203799175, alpha: 1)
+        label.setTextAppearance(with: .regularStyle, textSize: 15)
         return label
     }()
     private let exteriorImage: UIImageView = {
@@ -121,40 +117,6 @@ class CarsTableViewCell: UITableViewCell {
         
     }
 
-}
-
-
-
-
-
-
-
-extension UILabel {
-    func setTextAppearance(with textSize: CGFloat) {
-        let fontSize = CGFloat.calculateFontSize(from: CGFloat.calculateFontSize(from: textSize))
-        self.font = UIFont(name: "OpenSans", size: fontSize)!
-        self.textColor = .red
-    }
-}
-
-
-extension CGFloat {
-    static func calculateFontSize(from originalSize: CGFloat) -> CGFloat {
-        var deviceWidth: CGFloat = 0.0
-        if UIDevice().userInterfaceIdiom == .phone {
-            switch UIScreen.main.nativeBounds.height {
-            case 1136:
-                deviceWidth = 320         //iPhone 5 or 5S or 5C
-            case 1334, 2436:
-                deviceWidth = 375          // iPhone 6/6S/7/8/X
-            case 1920, 2208:
-                deviceWidth = 414          // iPhone 6+/6S+/7+/8+
-            default:
-                deviceWidth = 320
-            }
-        }
-        return originalSize / 320 * deviceWidth
-    }
 }
 
 
