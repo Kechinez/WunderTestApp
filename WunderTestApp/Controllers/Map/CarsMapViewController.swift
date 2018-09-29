@@ -11,10 +11,8 @@ import GoogleMaps
 
 class CarsMapViewController: UIViewController, GMSMapViewDelegate, GMUClusterManagerDelegate, CLLocationManagerDelegate {
     
-    let userLocation = CLLocationCoordinate2D(latitude: 53.517234, longitude: 9.978951)
-
     weak var dataSource: CarsTableViewController?
-    private var isMarkerTapped = true
+    private var isMarkerTapped = false
     private var markerManager: MapMarkerManager?
     var clusterManager: GMUClusterManager?
     
@@ -50,12 +48,11 @@ class CarsMapViewController: UIViewController, GMSMapViewDelegate, GMUClusterMan
         
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        //guard let userLocation = carsMap.myLocation?.coordinate else { return }
-        let camera = GMSCameraPosition.camera(withTarget: userLocation, zoom: 16.0)
-        carsMap.animate(to: camera)
-        isMarkerTapped = false
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        guard let userLocation = dataSource?.currentUserLocation else { return }
+        let camera = GMSCameraPosition.camera(withTarget: userLocation, zoom: 15.0)
+        carsMap.camera = camera
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -117,7 +114,7 @@ class CarsMapViewController: UIViewController, GMSMapViewDelegate, GMUClusterMan
 
     //MARK: - Network
     private func getRouteFromUserLocation(to marker: GMSMarker) {
-        
+        guard let userLocation = dataSource?.currentUserLocation else { return }
         NetworkManager.shared.getRoute(with: userLocation, and: marker.position) { [weak self, marker]  (result) in
             switch result {
             case .success(let route):

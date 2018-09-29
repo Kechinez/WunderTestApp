@@ -43,14 +43,14 @@ extension UILabel {
 extension CGRect {
     
     static func calculateInfoWindowFrameAccordingToDevice() -> CGRect {
-        var frame = CGRect(x: 0, y: 0, width: 187, height: 47)
+        var frame = CGRect(x: 0, y: 0, width: 187, height: 49)
         
         if UIDevice().userInterfaceIdiom == .phone {
             switch UIScreen.main.nativeBounds.height {
             case 1334, 2436:                                         // iPhone 6/6S/7/8/X
-                frame = CGRect(x: 0, y: 0, width: 200, height: 51)
+                frame = CGRect(x: 0, y: 0, width: 215, height: 49)
             case 1920, 2208:                                           // iPhone 6+/6S+/7+/8+
-                frame =  CGRect(x: 0, y: 0, width: 205, height: 51)
+                frame =  CGRect(x: 0, y: 0, width: 220, height: 49)
             default:                                                    //iPhone 5 or 5S or 5C
                 break
             }
@@ -68,9 +68,9 @@ extension CGFloat {
             case 1136:
                 deviceWidth = 320         //iPhone 5 or 5S or 5C
             case 1334, 2436:
-                deviceWidth = 375          // iPhone 6/6S/7/8/X
+                deviceWidth = 345          // iPhone 6/6S/7/8/X
             case 1920, 2208:
-                deviceWidth = 414          // iPhone 6+/6S+/7+/8+
+                deviceWidth = 384          // iPhone 6+/6S+/7+/8+
             default:
                 deviceWidth = 320
             }

@@ -10,6 +10,7 @@ import Foundation
 import UIKit
 import CoreLocation
 class CarsTableViewController: UIViewController, CLLocationManagerDelegate {
+    var currentUserLocation: CLLocationCoordinate2D?
     private let cellId = "carCellId"
     var cars: [Car] = []
     private unowned var carsTableView: UITableView {
@@ -36,6 +37,7 @@ class CarsTableViewController: UIViewController, CLLocationManagerDelegate {
             locationManager.requestWhenInUseAuthorization()
             locationManager.requestAlwaysAuthorization()
             locationManager.startUpdatingLocation()
+            currentUserLocation = locationManager.location?.coordinate
         }
         
         carsTableView.dataSource = self
@@ -51,7 +53,6 @@ class CarsTableViewController: UIViewController, CLLocationManagerDelegate {
                 ErrorManager.showErrorMessage(with: error, shownAt: currentVC)
             }
         }
-        
     }
     
 }
