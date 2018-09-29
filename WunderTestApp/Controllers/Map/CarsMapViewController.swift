@@ -9,15 +9,15 @@
 import UIKit
 import GoogleMaps
 
-class CarsMapViewController: UIViewController, GMSMapViewDelegate, CLLocationManagerDelegate {
-    
+class CarsMapViewController: UIViewController, GMSMapViewDelegate, GMUClusterManagerDelegate, CLLocationManagerDelegate {
     
     let userLocation = CLLocationCoordinate2D(latitude: 53.517234, longitude: 9.978951)
 
     weak var dataSource: CarsTableViewController?
-    private var isMarkerTapped = false
+    private var isMarkerTapped = true
     private var markerManager: MapMarkerManager?
-
+    var clusterManager: GMUClusterManager?
+    
     unowned var carsMap: GMSMapView {
         return (view as! CarsMapView).carsMap
     }
@@ -40,20 +40,35 @@ class CarsMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
         markerManager = _markerManager
         markerManager?.delegate = self
         self.carsMap.delegate = self
+        
+        let iconGenerator = GMUDefaultClusterIconGenerator()
+        let clusteringAlgorithm = GMUNonHierarchicalDistanceBasedAlgorithm()
+        let renderer = GMUDefaultClusterRenderer(mapView: carsMap, clusterIconGenerator: iconGenerator)
+        clusterManager = GMUClusterManager(map: carsMap, algorithm: clusteringAlgorithm, renderer: renderer)
+        clusterManager?.cluster()
+        clusterManager?.setDelegate(self, mapDelegate: self)
+        
     }
 
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        guard let userLocation = carsMap.myLocation?.coordinate else { return }
+        //guard let userLocation = carsMap.myLocation?.coordinate else { return }
         let camera = GMSCameraPosition.camera(withTarget: userLocation, zoom: 16.0)
         carsMap.animate(to: camera)
+        isMarkerTapped = false
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        isMarkerTapped = false
+        carsMap.clear()
+    }
     
     //MARK: - GMSMapView delegate methods
     func mapView(_ mapView: GMSMapView, didChange position: GMSCameraPosition) {
         if !isMarkerTapped {
-            markerManager?.setMarkersForVisibleArea()
+            markerManager?.setClusterItemsForVisibleArea()
+            clusterManager?.cluster()
         }
     }
     
@@ -63,15 +78,27 @@ class CarsMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
     
     func mapView(_ mapView: GMSMapView, didTap marker: GMSMarker) -> Bool {
         if isMarkerTapped {
-            markerManager?.addMarkers()
-            mapView.selectedMarker = nil
+            markerManager?.addClusterItems()
+            mapView.clear()
             isMarkerTapped = !isMarkerTapped
             
         } else {
-            getRoute(marker: marker)
-            markerManager?.removeMarkersExcept(marker)
+            let infoWindowMarker = GMSMarker(position: marker.position)
+            infoWindowMarker.map = carsMap
+            getRouteFromUserLocation(to: infoWindowMarker)
+            clusterManager?.clearItems()
             isMarkerTapped = !isMarkerTapped
         }
+        clusterManager?.cluster()
+        return true
+    }
+    
+    
+    //MARK: - GMUClusterManager delegate
+    func clusterManager(_ clusterManager: GMUClusterManager, didTap cluster: GMUCluster) -> Bool {
+        let newCamera = GMSCameraPosition.camera(withTarget: cluster.position, zoom: carsMap.camera.zoom + 1.5)
+        let cameraUpdate = GMSCameraUpdate.setCamera(newCamera)
+        carsMap.moveCamera(cameraUpdate)
         return true
     }
     
@@ -87,8 +114,9 @@ class CarsMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
         }
     }
     
+
     //MARK: - Network
-    private func getRoute(marker: GMSMarker) {
+    private func getRouteFromUserLocation(to marker: GMSMarker) {
         
         NetworkManager.shared.getRoute(with: userLocation, and: marker.position) { [weak self, marker]  (result) in
             switch result {
@@ -102,7 +130,7 @@ class CarsMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
             }
         }
     }
-  
+    
     
 }
 

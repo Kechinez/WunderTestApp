@@ -13,7 +13,8 @@ final class MapMarkerManager {
     
     weak var delegate:  CarsMapViewController?
     private let map: GMSMapView
-    private var visibleMarkers: [String: GMSMarker] = [:]
+    private var visibleClusterItems: [String: POIItem] = [:]
+
     
     //MARK: - init
     init(map: GMSMapView) {
@@ -21,21 +22,21 @@ final class MapMarkerManager {
     }
     
     //MARK: - Set markers only for visible area on the map
-    func setMarkersForVisibleArea() {
+    
+    func setClusterItemsForVisibleArea() {
         guard let cars = delegate?.dataSource?.cars else { return }
-        for car in cars {
         
+        for car in cars {
             if isCarVisibleOnMap(car: car) {
-                guard visibleMarkers[car.stringCoordinates] == nil else { continue }
-                let marker = GMSMarker()
-                marker.position = car.coordinates
-                marker.map = map
-                visibleMarkers[car.stringCoordinates] = marker
+                guard visibleClusterItems[car.stringCoordinates] == nil else { continue }
+                let item = POIItem(position: car.coordinates, name: "new")
+                visibleClusterItems[car.stringCoordinates] = item
+                delegate?.clusterManager?.add(item)
                 
             } else {
-                guard let marker = visibleMarkers[car.stringCoordinates] else { continue }
-                marker.map = nil
-                visibleMarkers.removeValue(forKey: car.stringCoordinates)
+                guard let marker = visibleClusterItems[car.stringCoordinates] else { continue }
+                delegate?.clusterManager?.remove(marker)
+                visibleClusterItems.removeValue(forKey: car.stringCoordinates)
             }
         }
     }
@@ -55,20 +56,12 @@ final class MapMarkerManager {
         return true
     }
     
-    //MARK: - Removing/Adding markers
-    func removeMarkersExcept(_ marker: GMSMarker) {
-        for (_, item) in visibleMarkers {
-            guard item === marker else {
-                item.map = nil
-                continue
-            }
-        }
-    }
     
-    func addMarkers() {
-        map.clear()
-        for (_, marker) in visibleMarkers {
-            marker.map = map
+    //MARK: - Removing/Adding markers
+    func addClusterItems() {
+        delegate?.clusterManager?.clearItems()
+        for (_, marker) in visibleClusterItems {
+            delegate?.clusterManager?.add(marker)
         }
     }
     

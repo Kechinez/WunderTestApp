@@ -27,7 +27,8 @@
 		3DD2ECB4215E8C2300F466D5 /* FuelImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2ECB3215E8C2300F466D5 /* FuelImageView.swift */; };
 		3DD2ECB6215F776300F466D5 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2ECB5215F776300F466D5 /* Extensions.swift */; };
 		3DD2ECB8215F7E7D00F466D5 /* ErrorManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2ECB7215F7E7D00F466D5 /* ErrorManager.swift */; };
-		E20A4A1978586626810D5E13 /* Pods_WunderTestApp.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 44B144D3FE1769E83C8D942E /* Pods_WunderTestApp.framework */; };
+		3DD2ECBC215F9A7900F466D5 /* POIItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3DD2ECBB215F9A7900F466D5 /* POIItem.swift */; };
+		75C634C4D341E6421DC6DF05 /* libPods-WunderTestApp.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A7F83E8601CDE87F7965D60E /* libPods-WunderTestApp.a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -55,7 +56,10 @@
 		3DD2ECB3215E8C2300F466D5 /* FuelImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FuelImageView.swift; sourceTree = "<group>"; };
 		3DD2ECB5215F776300F466D5 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		3DD2ECB7215F7E7D00F466D5 /* ErrorManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorManager.swift; sourceTree = "<group>"; };
-		44B144D3FE1769E83C8D942E /* Pods_WunderTestApp.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_WunderTestApp.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		3DD2ECB9215F971A00F466D5 /* WunderTestApp-Bridging-Header.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "WunderTestApp-Bridging-Header.h"; sourceTree = "<group>"; };
+		3DD2ECBA215F971B00F466D5 /* MarkerClustering.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MarkerClustering.h; sourceTree = "<group>"; };
+		3DD2ECBB215F9A7900F466D5 /* POIItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = POIItem.swift; sourceTree = "<group>"; };
+		A7F83E8601CDE87F7965D60E /* libPods-WunderTestApp.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-WunderTestApp.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,7 +67,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E20A4A1978586626810D5E13 /* Pods_WunderTestApp.framework in Frameworks */,
+				75C634C4D341E6421DC6DF05 /* libPods-WunderTestApp.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +190,7 @@
 			children = (
 				3DBCB5CE215BDC28006B7421 /* Route.swift */,
 				3DBCB5CC215BC682006B7421 /* MapMarkerManager.swift */,
+				3DD2ECBB215F9A7900F466D5 /* POIItem.swift */,
 			);
 			path = Map;
 			sourceTree = "<group>";
@@ -197,9 +202,11 @@
 				3DBCB5562158EF19006B7421 /* LaunchScreen.storyboard */,
 				3DBCB5592158EF19006B7421 /* Info.plist */,
 				3DBCB54D2158EF18006B7421 /* AppDelegate.swift */,
+				3DD2ECBA215F971B00F466D5 /* MarkerClustering.h */,
 				3DBCB58C215A4C8D006B7421 /* Fonts */,
 				3DD2ECB5215F776300F466D5 /* Extensions.swift */,
 				3DD2ECB7215F7E7D00F466D5 /* ErrorManager.swift */,
+				3DD2ECB9215F971A00F466D5 /* WunderTestApp-Bridging-Header.h */,
 			);
 			path = SupportFiles;
 			sourceTree = "<group>";
@@ -215,7 +222,7 @@
 		8AC91117B9070F491B0582AA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				44B144D3FE1769E83C8D942E /* Pods_WunderTestApp.framework */,
+				A7F83E8601CDE87F7965D60E /* libPods-WunderTestApp.a */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -264,6 +271,7 @@
 				TargetAttributes = {
 					3DBCB5492158EF18006B7421 = {
 						CreatedOnToolsVersion = 9.3;
+						LastSwiftMigration = 0930;
 					};
 				};
 			};
@@ -364,6 +372,7 @@
 				3DD2ECB6215F776300F466D5 /* Extensions.swift in Sources */,
 				3DBCB5CD215BC682006B7421 /* MapMarkerManager.swift in Sources */,
 				3DBCB5CF215BDC28006B7421 /* Route.swift in Sources */,
+				3DD2ECBC215F9A7900F466D5 /* POIItem.swift in Sources */,
 				3DBCB5DC215CF890006B7421 /* ParentViewController.swift in Sources */,
 				3DBCB5C9215B92F1006B7421 /* CarsMapViewController.swift in Sources */,
 				3DBCB58B215A3601006B7421 /* CarsTableViewCell.swift in Sources */,
@@ -510,6 +519,7 @@
 			baseConfigurationReference = 207292C22C43458FF28957A1 /* Pods-WunderTestApp.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9QD9Y49583;
 				INFOPLIST_FILE = "$(SRCROOT)/WunderTestApp/SupportFiles/Info.plist";
@@ -520,6 +530,8 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kechin.WunderTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WunderTestApp/SupportFiles/WunderTestApp-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -530,6 +542,7 @@
 			baseConfigurationReference = 3301803FE879D505EEF5CC93 /* Pods-WunderTestApp.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CLANG_ENABLE_MODULES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9QD9Y49583;
 				INFOPLIST_FILE = "$(SRCROOT)/WunderTestApp/SupportFiles/Info.plist";
@@ -540,6 +553,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.kechin.WunderTestApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_OBJC_BRIDGING_HEADER = "WunderTestApp/SupportFiles/WunderTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
