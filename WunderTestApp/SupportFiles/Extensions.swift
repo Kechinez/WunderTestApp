@@ -11,7 +11,6 @@ import CoreLocation
 
 extension CLLocationCoordinate2D {
     func coordinatesToString() -> String {
-        print(String(self.latitude) + "," + String(self.longitude))
         return String(self.latitude) + "," + String(self.longitude)
     }
 }
