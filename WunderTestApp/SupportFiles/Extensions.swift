@@ -40,7 +40,27 @@ extension UILabel {
 }
 
 
+extension CGRect {
+    
+    static func calculateInfoWindowFrameAccordingToDevice() -> CGRect {
+        var frame = CGRect(x: 0, y: 0, width: 187, height: 47)
+        
+        if UIDevice().userInterfaceIdiom == .phone {
+            switch UIScreen.main.nativeBounds.height {
+            case 1334, 2436:                                         // iPhone 6/6S/7/8/X
+                frame = CGRect(x: 0, y: 0, width: 200, height: 51)
+            case 1920, 2208:                                           // iPhone 6+/6S+/7+/8+
+                frame =  CGRect(x: 0, y: 0, width: 205, height: 51)
+            default:                                                    //iPhone 5 or 5S or 5C
+                break
+            }
+        }
+        return frame
+    }
+}
+
 extension CGFloat {
+    
     static func calculateFontSize(from originalSize: CGFloat) -> CGFloat {
         var deviceWidth: CGFloat = 0.0
         if UIDevice().userInterfaceIdiom == .phone {

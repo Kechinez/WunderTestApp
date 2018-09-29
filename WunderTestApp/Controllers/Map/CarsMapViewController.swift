@@ -16,7 +16,7 @@ class CarsMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
 
     weak var dataSource: CarsTableViewController?
     private var isMarkerTapped = false
-    var markerManager: MapMarkerManager?
+    private var markerManager: MapMarkerManager?
 
     unowned var carsMap: GMSMapView {
         return (view as! CarsMapView).carsMap
@@ -25,7 +25,7 @@ class CarsMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
         return dataSource!.cars.isEmpty
     }
     lazy private var infoWindow: InfoWindow = {
-        return InfoWindow(frame: CGRect(x: 0, y: 0, width: 192, height: 47))
+        return InfoWindow(frame: CGRect.calculateInfoWindowFrameAccordingToDevice())
     }()
     
     
@@ -97,7 +97,8 @@ class CarsMapViewController: UIViewController, GMSMapViewDelegate, CLLocationMan
                 self?.buildRoute(polyline: route.polylinePath)
                 self?.carsMap.selectedMarker = marker
             case .failure(let error):
-                print(error)
+                guard let currentVC = self else { return }
+                ErrorManager.showErrorMessage(with: error, shownAt: currentVC)
             }
         }
     }

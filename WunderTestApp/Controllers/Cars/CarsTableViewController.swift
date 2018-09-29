@@ -47,7 +47,8 @@ class CarsTableViewController: UIViewController, CLLocationManagerDelegate {
                 self?.cars = tempCars
                 self?.carsTableView.reloadData()
             case .failure(let error):
-                print(error)
+                guard let currentVC = self else { return }
+                ErrorManager.showErrorMessage(with: error, shownAt: currentVC)
             }
         }
         
@@ -82,7 +83,6 @@ extension CarsTableViewController: UITableViewDataSource {
         let cell = tableView.dequeueReusableCell(withIdentifier: cellId, for: indexPath) as! CarsTableViewCell
         let currentCar = cars[indexPath.row]
         cell.updateUI(with: currentCar)
-        cell.fuelLevelImage.setNeedsDisplay()
         return cell
     }
 

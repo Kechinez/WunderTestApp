@@ -9,11 +9,11 @@
 import Foundation
 import GoogleMaps
 
-class MapMarkerManager {
+final class MapMarkerManager {
     
     weak var delegate:  CarsMapViewController?
-    let map: GMSMapView
-    var visibleMarkers: [String: GMSMarker] = [:]
+    private let map: GMSMapView
+    private var visibleMarkers: [String: GMSMarker] = [:]
     
     //MARK: - init
     init(map: GMSMapView) {

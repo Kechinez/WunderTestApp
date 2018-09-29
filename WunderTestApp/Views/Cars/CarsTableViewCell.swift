@@ -48,7 +48,7 @@ class CarsTableViewCell: UITableViewCell {
         imageView.translatesAutoresizingMaskIntoConstraints = false
         return imageView
     }()
-    let fuelLevelImage: FuelImageView = {
+    private let fuelLevelImage: FuelImageView = {
         let imageView = FuelImageView()
         imageView.clipsToBounds = true
         imageView.contentMode = .scaleAspectFill
@@ -85,7 +85,7 @@ class CarsTableViewCell: UITableViewCell {
         interiorImage.image = UIImage(named: car.interior.rawValue)
         fuelLevelImage.setImageColor()
         fuelLevelImage.drawArrow(accordingTo: car.fuel)
-        
+        fuelLevelImage.setNeedsDisplay()
     }
     
     //MARK: - Updating constraints
