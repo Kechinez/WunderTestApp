@@ -93,4 +93,8 @@ extension Float {
     func doubleIt() {
         print("Doble")
     }
+    func aaaaa() -> String {
+        return "@@@@@"
+    }
+    
 }
