@@ -77,3 +77,14 @@ extension CGFloat {
         return originalSize / 320 * deviceWidth
     }
 }
+
+
+extension UILabel {
+    func helloWorld() {
+        print("Hello workds")
+    }
+    func nothingToDO() {
+        print("@@@@@")
+    }
+    
+}

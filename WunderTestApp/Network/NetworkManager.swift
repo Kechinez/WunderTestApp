@@ -62,7 +62,7 @@ private enum ApiRequests {
 final class NetworkManager {
     static let shared = NetworkManager()
     
-    init() {}
+    private init() {}
     
     private let session = URLSession(configuration: .default)
     private var getRouteTask: URLSessionTask?

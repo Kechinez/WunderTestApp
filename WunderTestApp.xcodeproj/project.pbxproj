@@ -528,7 +528,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kechin.WunderTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kechin.WunderTestApp01;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WunderTestApp/SupportFiles/WunderTestApp-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
@@ -551,7 +551,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.kechin.WunderTestApp;
+				PRODUCT_BUNDLE_IDENTIFIER = com.kechin.WunderTestApp01;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OBJC_BRIDGING_HEADER = "WunderTestApp/SupportFiles/WunderTestApp-Bridging-Header.h";
 				SWIFT_VERSION = 4.0;
