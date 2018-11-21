@@ -88,3 +88,9 @@ extension UILabel {
     }
     
 }
+
+extension Float {
+    func doubleIt() {
+        print("Doble")
+    }
+}
